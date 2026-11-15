@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Change the loan terms and repayment history of a fictional applicant to see how the trained model scores repayment difficulty."><title>Home Credit default risk | Karthik Konda</title>
+  <link rel="stylesheet" href="theme.css">
+  <script src="model-data.js" defer></script>
+  <script src="predict.js" defer></script>
+  <script src="main.js" defer></script>
+</head><body class="credit">
+<header class="top"><div class="wrap"><span class="name">Karthik Konda</span>
+<nav aria-label="Demo navigation"><a href="#methods">Methods</a><a href="https://www.kaggle.com/competitions/home-credit-default-risk" target="_blank" rel="noreferrer">Dataset ↗</a></nav></div></header>
+<main class="wrap"><div class="hero"><div class="kicker">Credit risk · LightGBM</div>
+<h1>Home Credit default risk</h1><p>Change the loan terms and repayment history of a fictional applicant to see how the trained model scores repayment difficulty.</p></div>
+<noscript><p>Enable JavaScript to run the trained models in this browser.</p></noscript>
+<div class="workspace">
+<form class="panel" id="loan-inputs">
+  <div class="panel-line"><h2>Example application</h2><button type="reset" class="reset">Reset</button></div>
+  <div class="fields">
+    <div class="field wide"><label for="history">Repayment history</label><select id="history" name="history"></select>
+      <span class="field-help">Each profile summarizes a group of training applicants.</span></div>
+    <div class="field"><label for="income">Annual income</label><input id="income" name="income" type="number" min="1" step="any" required value="150000"></div>
+<div class="field"><label for="credit">Requested credit</label><input id="credit" name="credit" type="number" min="1" step="any" required value="450000"></div>
+<div class="field"><label for="annuity">Loan annuity</label><input id="annuity" name="annuity" type="number" min="1" step="any" required value="22500"></div>
+<div class="field"><label for="goods">Price of goods financed</label><input id="goods" name="goods" type="number" min="1" step="any" required value="400000"></div>
+<div class="field"><label for="external">External source score 2 (0–1)</label><input id="external" name="external" type="number" min="0" max="1" step="any" value="0.55" placeholder="Missing"></div>
+  </div>
+  <p class="notes">Use the dataset’s monetary units. Leave the external score blank to explore a missing value.</p>
+</form>
+<div class="sidebar">
+ <section class="output" aria-labelledby="credit-score-title"><div class="res-label" id="credit-score-title">Repayment-difficulty score</div>
+   <output class="big-score" id="score" aria-live="polite">—</output>
+   <div class="bar" aria-hidden="true"><i id="score-bar"></i></div>
+   <p class="result-description" id="score-detail"></p>
+ </section>
+ <section class="evaluation"><h2>Held-out evaluation</h2>
+   <dl class="metrics"><div class="metric"><dt>ROC AUC</dt><dd id="auc">—</dd></div>
+   <div class="metric"><dt>Test applications</dt><dd id="test-size">—</dd></div>
+   <div class="metric"><dt>Positive labels</dt><dd id="prevalence">—</dd></div>
+   <div class="metric"><dt>Model inputs</dt><dd id="feature-count">—</dd></div></dl>
+ </section>
+</div></div>
+<details class="methods" id="methods"><summary>Methods and data</summary><p>Seven Home Credit tables are joined at applicant level. The model uses payment timing, earlier decisions, monthly balances, and application amounts. Changing a monetary input also recomputes the related ratios. Remaining features come from training-group medians. Missing values follow the tree’s learned rules.</p>
+<p>This edition trains on 246,008 applications and evaluates on 61,503 untouched applications. Three-fold cross-validation within the training partition selects the leaf count. The scores describe the benchmark model on historical data. The form uses fictional profiles and runs entirely on your device.</p>
+<a href="https://www.kaggle.com/c/home-credit-default-risk/data?select=application_train.csv" target="_blank" rel="noreferrer">Competition data dictionary ↗</a></details>
+</main><footer class="wrap">Karthik Reddy Konda · Data science and machine learning</footer>
+</body></html>
